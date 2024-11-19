@@ -18,9 +18,13 @@ def get_db():
 def add_book(book: schemas.BookCreate, db: Session = Depends(get_db)):
     return crud.create_book(db, book)
 
+@app.get("/books/list/", response_model=list[schemas.BookResponse])
+def list_books(db: Session = Depends(get_db)):
+    return crud.get_books(db)
+
 @app.get("/books/", response_model=list[schemas.BookResponse])
-def list_books(author: str = None, year: int = None, db: Session = Depends(get_db)):
-    return crud.get_books(db, author, year)
+def list_books_by_author_or_year(author: str = None, year: int = None, db: Session = Depends(get_db)):
+    return crud.get_books_by_author_year(db, author, year)
 
 @app.get("/books/{book_id}", response_model=schemas.BookResponse)
 def get_book(book_id: int, db: Session = Depends(get_db)):
