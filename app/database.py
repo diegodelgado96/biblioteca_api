@@ -1,6 +1,6 @@
 from decouple import config
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
+from sqlalchemy.orm import sessionmaker, declarative_base, Session
 
 # Cargar las variables de entorno desde el archivo .env
 DB_USER = config("DB_USER")

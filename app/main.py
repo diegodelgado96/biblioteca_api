@@ -5,7 +5,11 @@ from .database import engine, Base, SessionLocal
 
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI()
+app = FastAPI(
+    title="Biblioteca API",
+    description="API REST para gestionar una biblioteca con operaciones CRUD",
+    version="1.0.0",
+)
 
 def get_db():
     db = SessionLocal()
