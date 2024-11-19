@@ -10,6 +10,10 @@ def create_book(db: Session, book: schemas.BookCreate):
 
 def get_books(db: Session, author: str = None, year: int = None):
     query = db.query(models.Book)
+    return query.all()
+
+def get_books_by_author_year(db: Session, author: str = None, year: int = None):
+    query = db.query(models.Book)
     if author:
         query = query.filter(models.Book.author == author)
     if year:
