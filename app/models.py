@@ -1,18 +1,10 @@
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy import Column, Integer, String
+from .database import Base
 
-Base = declarative_base()
-
-DATABASE_URL = "postgresql+asyncpg://usuario:contraseña@localhost/biblioteca"
-
-engine = create_engine(DATABASE_URL)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-class Libro(Base):
-    __tablename__ = "libros"
+class Book(Base):
+    __tablename__ = "books"
     id = Column(Integer, primary_key=True, index=True)
-    titulo = Column(String, nullable=False)
-    autor = Column(String, nullable=False)
-    anio_publicacion = Column(Integer, nullable=False)
+    title = Column(String, index=True, nullable=False)
+    author = Column(String, index=True, nullable=False)
+    year = Column(Integer, nullable=False)
     isbn = Column(String, unique=True, nullable=False)

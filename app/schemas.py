@@ -1,21 +1,21 @@
 from pydantic import BaseModel
 
-class LibroBase(BaseModel):
-    titulo: str
-    autor: str
-    anio_publicacion: int
+class BookBase(BaseModel):
+    title: str
+    author: str
+    year: int
     isbn: str
 
-class LibroCreate(LibroBase):
+class BookCreate(BookBase):
     pass
 
-class LibroUpdate(BaseModel):
-    titulo: str | None = None
-    autor: str | None = None
-    anio_publicacion: int | None = None
+class BookUpdate(BaseModel):
+    title: str | None = None
+    author: str | None = None
+    year: int | None = None
     isbn: str | None = None
 
-class LibroOut(LibroBase):
+class BookResponse(BookBase):
     id: int
 
     class Config:
